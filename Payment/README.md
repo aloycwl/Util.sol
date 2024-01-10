@@ -17,8 +17,10 @@ sstore(add(EAA, 0x05), 0x00) // this is free
 sstore(add(EAA, 0x06), 0x00) // can omit this actually
 
 To call this function, "lst" have to be specific,
+```
 bytes32 lis;
->assembly {
->>   lis := sload(add(EAA, 0x03));
->}
+assembly {
+   lis := sload(add(EAA, 0x03));
+}
 _pay(lis, 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4, 1e18);
+```
