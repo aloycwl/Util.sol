@@ -7,7 +7,6 @@ contract Check is Hashes {
 
     function isSuspended(address adr) internal view {
         assembly {
-            // require(!suspended[address(this)] && !suspended[adr]);
             if or(gt(sload(address()), 0x00), gt(sload(adr), 0x00)) {
                 mstore(0x80, ERR) 
                 mstore(0xa0, STR)
@@ -19,7 +18,6 @@ contract Check is Hashes {
 
     function isSuspended(address adr, address ad2) internal view {
         assembly {
-            // require(!suspended[address(this)] && !suspended[adr] && !suspended[ad2]);
             if or(or(gt(sload(address()), 0x00), gt(sload(adr), 0x00)), gt(sload(ad2), 0x00)) {
                 mstore(0x80, ERR) 
                 mstore(0xa0, STR)
@@ -33,13 +31,13 @@ contract Check is Hashes {
         bytes32 hsh;
 
         assembly {
-            mstore(0x00, origin()) // ind = index[adr]
+            mstore(0x00, caller())
             let ptr := add(keccak256(0x00, 0x20), 0x01)
             let ind := sload(ptr) 
             
-            sstore(ptr, add(ind, 0x01)) // index[adr]++
+            sstore(ptr, add(ind, 0x01))
 
-            mstore(0x80, origin())
+            mstore(0x80, caller())
             mstore(0xa0, ind)
             mstore(0xc0, amt)
             hsh := keccak256(0x80, 0x60)
@@ -49,7 +47,7 @@ contract Check is Hashes {
         isSuspended(msg.sender);
 
         assembly {
-            if iszero(eq(val, sload(APP))) { // require(val == signer)
+            if iszero(eq(val, sload(APP))) {
                 mstore(0x80, ERR) 
                 mstore(0xa0, STR)
                 mstore(0xc0, ER4)

@@ -18,7 +18,7 @@ contract Ownable is Hashes {
     }
 
     constructor() {
-        assembly { sstore(OWO, caller()) } // owner = msg.sender
+        assembly { sstore(OWO, caller()) }
     }
 
     function owner() public view returns (address adr) {
