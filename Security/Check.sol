@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: None
 pragma solidity 0.8.0;
 
-import {Hashes} from "../Hashes/Hashes.sol";
+import {Hashes} from "https://github.com/aloycwl/util.sol/blob/main/Hashes/Hashes.sol";
 
 contract Check is Hashes {
 
