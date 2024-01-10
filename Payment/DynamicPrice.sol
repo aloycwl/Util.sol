@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: None
 pragma solidity 0.8.0;
 
-import {Ownable} from "https://github.com/aloycwl/util.sol/blob/main/Access/Ownable.sol";
+import {Ownable} from "https://github.com/aloycwl/Util.sol/blob/main/Access/Ownable.sol";
 
 contract DynamicPrice is Ownable {
 
